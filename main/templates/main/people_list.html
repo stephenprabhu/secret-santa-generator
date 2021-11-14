@@ -1,0 +1,30 @@
+{% extends "base_bootstrap.html" %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-5">
+        {% if person_list %}
+        <ul>
+            The People Are: 
+        {% for person in person_list %}
+           <li> {{person.name}} <a href="{% url 'main:update' person.id %}">Update</a> | <a href="{% url 'main:remove' person.id %}">Delete</a>   </li>
+        {% endfor %}
+        </ul>
+        {% else %}
+            No members yet. Try Adding One. 
+        {% endif %}
+ 
+    </div>
+    {% load crispy_forms_tags %}
+    <div class="col-5">
+        <form method="POST" action="{% url 'main:add' %}">
+            {% csrf_token %}
+            {{ person_form|crispy }}
+            <input type="submit" class="btn btn-primary" value="Submit">
+        </form>
+    </div>
+</div>
+<br>
+<a href="{% url 'main:all' %}" class="btn btn-primary">Home</a>
+{% endblock %}

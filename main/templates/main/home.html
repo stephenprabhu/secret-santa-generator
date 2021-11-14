@@ -1,0 +1,8 @@
+{% extends "base_bootstrap.html" %}
+
+{% block content %}
+<h1>Homepage</h1>
+<a href="{% url 'register' %}" class="btn btn-primary">Create New Group</a>
+<a href="{% url 'main:view' %}" class="btn btn-primary">Find My Secret Santa</a>
+
+{% endblock %}

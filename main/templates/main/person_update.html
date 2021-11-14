@@ -1,0 +1,10 @@
+{% extends "base_bootstrap.html" %}
+
+{% block content %}
+    <form method="POST" action="{% url 'main:update' person.id %}">
+        {% csrf_token %}
+        {{ form.as_table }}
+        <input type="submit" class="btn btn-primary" value="Submit">
+    </form>
+
+{% endblock %}
