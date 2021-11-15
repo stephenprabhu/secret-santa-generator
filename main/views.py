@@ -55,7 +55,7 @@ class PersonDeleteView(DeleteView, LoginRequiredMixin):
 class PersonChooseView(View):
     def get(self, request):
         if request.user.is_authenticated:
-            people = Person.objects.filter(group=request.user, hasBeenAssigned=False )
+            people = Person.objects.filter(group=request.user )
             return render(request, 'main/person_choose.html', {'people':people})
         else:
             return redirect('%s?next=%s' % (settings.LOGIN_URL,request.path))
@@ -63,16 +63,30 @@ class PersonChooseView(View):
     def post(self, request):
         currentPerson = Person.objects.filter(id=request.POST['person'])
         #add error safety for the line if chosenPerson deosnt exist
-        secretSanta = generateSecretSanta(currentPerson, request.user)
+        secretSanta = generateSecretSanta(currentPerson[0], request.user)
+        ctx = {'person':secretSanta}
+        return render(request, 'main/person_reveal.html', ctx)
        
 
 
 def generateSecretSanta(currentPerson,group):
-     if(currentPerson.has_voted):
-        message="You Have Already Been Assigned A Secret Santa"
+     if(currentPerson.hasVoted):
+        return 0
      else:
-        people =  Person.objects.filter(group=group, hasBeenAssigned=False)
+        people =  Person.objects.filter(group=group, hasBeenAssigned=False).exclude(id=currentPerson.id)
      if len(people)>2 :
          num = random.randrange(0, len(people)-1)
-         person = people[num]
+         chosenPerson = people[num]
+     elif len(people)==2 :
+         chosenPerson = people.filter(hasVoted=False)[0]
+     elif len(people)==1:
+         chosenPerson = people[0]
+     else:
+         return None
+     currentPerson.hasVoted = True
+     currentPerson.save()
+     chosenPerson.hasBeenAssigned=True
+     chosenPerson.save()
+     return chosenPerson
+     
 

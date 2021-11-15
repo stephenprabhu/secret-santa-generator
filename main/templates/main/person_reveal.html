@@ -1,0 +1,12 @@
+{% extends "base_bootstrap.html" %}
+
+{% block content %}
+<h4>Reveal Page</h4>
+{% if person == 0 %}
+    <h5>You Have Already Been Assigned A Secret Santa. Please check your inbox for the name</h5>
+{% elif person == None %}
+    <h5>There Seems to be an error</h5>
+{% else %}
+    <h5> Your Person is {{ person.name }}</h5>
+{% endif%}
+{% endblock %}
