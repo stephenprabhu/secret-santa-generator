@@ -39,7 +39,7 @@ class PersonCreateView(View, LoginRequiredMixin):
 class PersonUpdateView(UpdateView, LoginRequiredMixin):
     model = Person
     template_name = 'main/person_update.html'
-    fields= ['name']
+    fields= ['name','email']
     success_url = reverse_lazy('main:list')
 
 # Delete Member
@@ -67,7 +67,6 @@ class PersonChooseView(View):
         #add error safety for the line if chosenPerson deosnt exist
         secretSanta = generateSecretSanta(currentPerson[0], request.user)
         ctx = {'person':secretSanta}
-        sendMail(secretSanta)
         return render(request, 'main/person_reveal.html', ctx)
        
 
@@ -92,15 +91,16 @@ def generateSecretSanta(currentPerson,group):
      currentPerson.save()
      chosenPerson.hasBeenAssigned=True
      chosenPerson.save()
+     sendMail(chosenPerson,currentPerson)
      return chosenPerson
 
 
-def sendMail(secretSanta):
-    if(secretSanta==0 or secretSanta==None):
+def sendMail(chosenPerson,currentPerson):
+    if(chosenPerson==0 or chosenPerson==None):
         return
     else:
-        message = "Your secret santa is " + secretSanta.name    
-        send_mail('About Your Secret Santa', message, 'contact@stephenprabhu.com', ['machado_stephen@yahoo.com'], fail_silently=False)
+        message = "Your secret santa is " + chosenPerson.name    
+        send_mail('About Your Secret Santa', message, 'contact@stephenprabhu.com', [currentPerson.email], fail_silently=False)
 
      
 
