@@ -8,6 +8,8 @@ from main.models import Person
 from django.conf import settings
 from main.forms import PersonForm
 import random
+from django.core.mail import send_mail
+
 
 # Manage Members In A Group
 class PersonListView(View):
@@ -65,7 +67,10 @@ class PersonChooseView(View):
         #add error safety for the line if chosenPerson deosnt exist
         secretSanta = generateSecretSanta(currentPerson[0], request.user)
         ctx = {'person':secretSanta}
+        sendMail(secretSanta)
         return render(request, 'main/person_reveal.html', ctx)
+       
+
        
 
 
@@ -88,5 +93,14 @@ def generateSecretSanta(currentPerson,group):
      chosenPerson.hasBeenAssigned=True
      chosenPerson.save()
      return chosenPerson
+
+
+def sendMail(secretSanta):
+    if(secretSanta==0 or secretSanta==None):
+        return
+    else:
+        message = "Your secret santa is " + secretSanta.name    
+        send_mail('About Your Secret Santa', message, 'contact@stephenprabhu.com', ['machado_stephen@yahoo.com'], fail_silently=False)
+
      
 
