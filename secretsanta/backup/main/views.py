@@ -58,7 +58,7 @@ class PersonDeleteView(DeleteView, LoginRequiredMixin):
         return qs.filter(group=self.request.user)
 
 
-class PersonSendView(View):
+class PersonChooseView(View):
     def get(self, request):
         if request.user.is_authenticated:
             people = Person.objects.filter(group=request.user)
@@ -67,11 +67,11 @@ class PersonSendView(View):
             return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
 
     def post(self, request):
-        groupMembers = Person.objects.filter(group=request.user)
-        # add error safety for the line if chosenPerson deosnt exist
-        for member in groupMembers:
-            generateSecretSanta(member, request.user)
-        return render(request, 'main/person_reveal.html')
+        currentPerson = Person.objects.filter(id=request.POST['person'])
+        # add error safety for the line if chosenPerson doesn't exist
+        secretSanta = generateSecretSanta(currentPerson[0], request.user)
+        ctx = {'person': secretSanta}
+        return render(request, 'main/person_reveal.html', ctx)
 
 
 def generateSecretSanta(currentPerson, group):
@@ -83,9 +83,7 @@ def generateSecretSanta(currentPerson, group):
         num = random.randrange(0, len(people) - 1)
         chosenPerson = people[num]
     elif len(people) == 2:
-        chosenPerson = people.filter(hasVoted=False)
-        if len(chosenPerson) > 0:
-            chosenPerson = chosenPerson[0]
+        chosenPerson = people.filter(hasVoted=False)[0]
     elif len(people) == 1:
         chosenPerson = people[0]
     else:

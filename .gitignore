@@ -3,5 +3,5 @@ db.sqlite3
 .gitignore
 Procfile
 secretsanta/db.sqlite3
-secretsanta/.env
+.env
 secretsanta/.gitignore
