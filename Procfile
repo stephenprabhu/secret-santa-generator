@@ -1,0 +1,1 @@
+heroku psscale web=1
