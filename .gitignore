@@ -1,9 +1,7 @@
-<<<<<<< HEAD
 db.sqlite3
 .env
 .gitignore
-=======
+Procfile
 secretsanta/db.sqlite3
 secretsanta/.env
 secretsanta/.gitignore
->>>>>>> d2acf657c4741f591cd4387ef2f315c3610bd7aa
