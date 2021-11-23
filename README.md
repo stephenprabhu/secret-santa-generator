@@ -7,9 +7,11 @@ A Django application that will store secret santa group members and randomly ass
 <strong>SendGrid</strong> - for sending emails to group members
 
 <h5>Goals:</h5>
-* Make The Interface Easy To Use
-* Overcome the issue of any member in the group getting assigned thier own name or getting left behind
-* Make the process of creating a group and assigning secret santas a quick process
+<ul>
+  <li>Make The Interface Easy To Use</li>
+  <li>Overcome the issue of any member in the group getting assigned thier own name or getting left behind</li>
+  <li>Make the process of creating a group and assigning secret santas a quick process</li>
+</ul>
 
 <h5>Installation Instructions: </h5>
 1. Install pip<br>
