@@ -12,8 +12,8 @@ A Django application that will store secret santa group members and randomly ass
 * Make the process of creating a group and assigning secret santas a quick process
 
 <h5>Installation Instructions: </h5>
-1. Install pip
-2. Clone The Project
+1. Install pip<br>
+2. Clone The Project<br>
 3. Run <pre>pip install django</pre>
 4. Run <pre>pip install python-decouple</pre>
 5. Run <pre>python manage.py migrate</pre>
