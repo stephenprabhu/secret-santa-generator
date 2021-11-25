@@ -94,7 +94,7 @@ def generateSecretSanta(currentPerson, group):
     currentPerson.save()
     chosenPerson.hasBeenAssigned = True
     chosenPerson.save()
-    sendMail(chosenPerson, currentPerson)
+    #sendMail(chosenPerson, currentPerson)
     return chosenPerson
 
 
