@@ -1,14 +1,14 @@
-{% extends "main/base_bootstrap.html" %}
+{% extends "base_home.html" %}
 
 {% block content %}
 
 <div class="row">
-    <div class="col-5">
+    <div class="col-lg-4">
         {% if person_list %}
-        <ul>
+        <ul class="list-group">
             The People Are:
         {% for person in person_list %}
-           <li> {{person.name}} <a href="{% url 'main:update' person.id %}">Update</a> | <a href="{% url 'main:remove' person.id %}">Delete</a>   </li>
+            <li style="text-align:left" class="list-group-item">{{person.name}} <span style="float:right"> <a href="{% url 'main:update' person.id %}"><i style="color:#16a085" class="fas fa-pen"></i></a> | <a href="{% url 'main:remove' person.id %}"><i style="color:#e74c3c" class="fas fa-trash-alt"></i></a> </span>  </li>
         {% endfor %}
         </ul>
         {% else %}
@@ -17,17 +17,25 @@
 
     </div>
     {% load crispy_forms_tags %}
-    <div class="col-5">
+    <div class="col-lg-4">
         <form method="POST" action="{% url 'main:add' %}">
             {% csrf_token %}
             {{ person_form|crispy }}
-            <input type="submit" class="btn btn-primary" value="Submit">
+            <input type="submit" class="btn btn-primary mt-3" value="Submit">
         </form>
     </div>
-</div>
-<br>
-Done Adding Members? Begin Generating Secret Santas for everyone
+    <div class="col-lg-4">
+        {% load mathfilters %}
+{% if person_count >= 3 %}
+    Done Adding Members? Begin Generating Secret Santas for everyone
 <button type="button"  data-bs-toggle="modal" data-bs-target="#sendMail" class="btn btn-success">Begin</button>
+{% else %}
+    To Start The Process, Add At Least {{ 3|sub:person_count }} More People.
+{% endif %}
+    </div>
+</div>
+
+
 <a href="{% url 'main:all' %}" class="btn btn-primary">Home</a>
 <!-- Button trigger modal -->
 <!-- Modal -->

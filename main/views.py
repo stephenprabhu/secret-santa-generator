@@ -19,7 +19,7 @@ class PersonListView(View):
         if request.user.is_authenticated:
             members = Person.objects.filter(group=request.user)
             personForm = PersonForm()
-            ctx = {'person_list': members, 'person_form': personForm}
+            ctx = {'person_list': members, 'person_form': personForm, 'person_count':len(members)}
             return render(request, self.template_name, ctx)
         else:
             return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
@@ -100,19 +100,14 @@ def generateSecretSanta(currentPerson, group):
     currentPerson.save()
     chosenPerson.hasBeenAssigned = True
     chosenPerson.save()
-    print('person saved. sending mail now......')
     sendMail(chosenPerson, currentPerson)
-    print('Mail Sent')
     return chosenPerson
 
 
 def sendMail(chosenPerson, currentPerson):
-    print('inside mail function')
     if chosenPerson == 0 or chosenPerson is None:
-        print('oops')
         return
     else:
-        print('getting ready to send...')
         message = "Your secret santa is " + chosenPerson.name
         send_mail('About Your Secret Santa', message, 'contact@stephenprabhu.com', [currentPerson.email],
                   fail_silently=False)

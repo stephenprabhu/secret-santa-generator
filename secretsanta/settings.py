@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'main.apps.MainConfig',
     'crispy_forms',
-
+    'mathfilters'
 ]
 
 MIDDLEWARE = [

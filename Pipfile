@@ -8,6 +8,7 @@ django = "*"
 python-decouple = "*"
 django-crispy-forms = "*"
 django-sendgrid-v5 = "*"
+django-mathfilters = "*"
 
 [dev-packages]
 
