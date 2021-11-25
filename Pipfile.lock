@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "b59c027cfc2e9bf54841bc85998030c177921d6f7a8173c31b07c4ba28b7e13b"
+            "sha256": "785108192146a740b3c5a7069c3fe5a61cba5f81590000efaa494e1556e7daa6"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -40,6 +40,14 @@
             "index": "pypi",
             "version": "==1.13.0"
         },
+        "django-sendgrid-v5": {
+            "hashes": [
+                "sha256:add606c9957ddf41bf9b7e566b21c61aa92477862a7f73fe64d9f9d0780fe19b",
+                "sha256:c41f5225558a9c9c0ed29e9496076d59c4ea70c31a1bd85308374150182e9a7b"
+            ],
+            "index": "pypi",
+            "version": "==1.1.1"
+        },
         "python-decouple": {
             "hashes": [
                 "sha256:011d3f785367c54a72cf8a07d3a7a48bb8cc1a0f8e6c70353ca5767ebf7c8c9d",
@@ -48,12 +56,27 @@
             "index": "pypi",
             "version": "==3.5"
         },
+        "python-http-client": {
+            "hashes": [
+                "sha256:2aef67b4f49147e623f35f32b82756e30844a8f1b55a8c7c219de694f4818214"
+            ],
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
+            "version": "==3.3.3"
+        },
         "pytz": {
             "hashes": [
                 "sha256:3672058bc3453457b622aab7a1c3bfd5ab0bdae451512f6cf25f64ed37f5b87c",
                 "sha256:acad2d8b20a1af07d4e4c9d2e9285c5ed9104354062f275f3fcd88dcef4f1326"
             ],
             "version": "==2021.3"
+        },
+        "sendgrid": {
+            "hashes": [
+                "sha256:00f1a2b411ed58fb72834c9a94480f4f9e2b87803808b6a480b476b62538444e",
+                "sha256:0997006befd4ac27ac1982f8d398e1c1fd83ada6afe151159aad361ed4f334a7"
+            ],
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4'",
+            "version": "==6.9.1"
         },
         "sqlparse": {
             "hashes": [
@@ -62,6 +85,12 @@
             ],
             "markers": "python_version >= '3.5'",
             "version": "==0.4.2"
+        },
+        "starkbank-ecdsa": {
+            "hashes": [
+                "sha256:73b62b1b3de54bbaa05dedb1a2d951c033432bb074de899e19d4a96a36b21df6"
+            ],
+            "version": "==2.0.3"
         }
     },
     "develop": {}

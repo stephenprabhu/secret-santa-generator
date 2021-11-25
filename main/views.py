@@ -100,14 +100,19 @@ def generateSecretSanta(currentPerson, group):
     currentPerson.save()
     chosenPerson.hasBeenAssigned = True
     chosenPerson.save()
-    #sendMail(chosenPerson, currentPerson)
+    print('person saved. sending mail now......')
+    sendMail(chosenPerson, currentPerson)
+    print('Mail Sent')
     return chosenPerson
 
 
 def sendMail(chosenPerson, currentPerson):
+    print('inside mail function')
     if chosenPerson == 0 or chosenPerson is None:
+        print('oops')
         return
     else:
+        print('getting ready to send...')
         message = "Your secret santa is " + chosenPerson.name
         send_mail('About Your Secret Santa', message, 'contact@stephenprabhu.com', [currentPerson.email],
                   fail_silently=False)
