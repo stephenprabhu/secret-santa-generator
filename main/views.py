@@ -75,6 +75,12 @@ class PersonSendView(View):
 
 
 def generateSecretSanta(currentPerson, group):
+    currentPerson = Person.objects.filter(id=currentPerson.id)
+    if len(currentPerson) <= 0:
+        return None
+    else:
+        currentPerson = currentPerson[0]
+
     if currentPerson.hasVoted:
         return 0
     else:
