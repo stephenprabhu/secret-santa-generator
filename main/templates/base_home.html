@@ -17,12 +17,21 @@
         background-image: url('https://stephenprabhu.zd.lu/secretSantaBackground.png');
         background-size: cover;
     }
+    .mycard {
+        margin: auto;
+        width: 50%;
+    }
     @media (max-width:968px) {
       body {
-        background-image: url('https://stephenprabhu.zd.lu/secretSantaBackground.png');
-        background-size: auto;
+            background-image: url('https://stephenprabhu.zd.lu/secretSantaBackground.png');
+            background-size: auto;
+        }
+        .mycard {
+            margin: auto;
+            width: 90%;
         }
     }
+   
     </style>
 
 <title>Secret Santa Generator</title>
@@ -43,7 +52,9 @@
 {% load static %}
 <body>
 <div id="homeContent" class="container">
-{% block navbar %} {% endblock %}
+{% block navbar %}
+<h1>Secret Santa Generator</h1>
+ {% endblock %}
 {% block welcome %} {% endblock %}
 {% block messages %}
     {% if messages %}
