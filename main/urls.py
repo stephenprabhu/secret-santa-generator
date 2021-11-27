@@ -10,4 +10,6 @@ urlpatterns = [
     path('members/<int:pk>/delete/', views.PersonDeleteView.as_view(), name='remove'),
     path('members/<int:pk>/update/', views.PersonUpdateView.as_view(), name='update'),
     path('members/send/', views.PersonSendView.as_view(), name='send'),
+    path('about/', TemplateView.as_view(template_name='main/about.html'), name='about'),
+
 ]

@@ -1,8 +1,10 @@
-{% extends "main/base_bootstrap.html" %}
+{% extends "base_home.html" %}
 
 {% block content %}
-<h4>Reveal Page</h4>
-    <h5>YAY! You have been assigned a person. The name has been sent to your Email Address.</h5>
-    <h6> Please wait for 2-4 minutes for the email to arrive in your inbox.</h6>
-       <h6>If You Are still unable to see the email, please check the spam or junk folder</h6>
+<h4>Success</h4>
+    <h5>YAY! Every member in the group has been sent an email with a name of a secret member from your group.</h5>
+    <h6>Please allow 2-4 minutes for the email to arrive in the inbox of each member.</h6>
+    <h6>If You Are still unable to see the email, please check the spam or junk folder</h6>
+
+       <a href="{% url 'main:all' %}" class="btn btn-primary">Go Home</a>
 {% endblock %}

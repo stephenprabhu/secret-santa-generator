@@ -1,5 +1,7 @@
 A Django application that will store secret santa group members and randomly assign each member to any other member in the group.
 
+<h5><a href="http://steverogers133.pythonanywhere.com/">Final Result</a></h5>
+
 <h5>Libraries Used:</h5>
 <strong>python-decouple</strong> - For Using .env files
 
@@ -11,6 +13,7 @@ A Django application that will store secret santa group members and randomly ass
   <li>Make The Interface Easy To Use</li>
   <li>Overcome the issue of any member in the group getting assigned thier own name or getting left behind</li>
   <li>Make the process of creating a group and assigning secret santas a quick process</li>
+  <li>Send emails to Each member in the group quickly and prevent the email from getting into the spam folder</li>
 </ul>
 
 <h5>Installation Instructions: </h5>
