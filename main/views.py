@@ -1,5 +1,4 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.models import Group
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import DeleteView, UpdateView
@@ -8,7 +7,7 @@ from main.models import Person
 from django.conf import settings
 from main.forms import PersonForm
 import random
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 
 
 # Manage Members In A Group
@@ -108,6 +107,13 @@ def sendMail(chosenPerson, currentPerson):
     if chosenPerson == 0 or chosenPerson is None:
         return
     else:
-        message = "Your secret santa is " + chosenPerson.name
-        send_mail('About Your Secret Santa', message, 'contact@stephenprabhu.com', [currentPerson.email],
-                  fail_silently=False)
+        message = EmailMessage(
+            from_email='contact@stephenprabhu.com',
+            to=[currentPerson.email],
+        )
+        message.template_id = 'd-874456928cfb4b4d8fa93bbc557a84dc'
+        message.dynamic_template_data = {
+            "secret_name": chosenPerson.name
+        }
+        message.send(fail_silently=False)
+
