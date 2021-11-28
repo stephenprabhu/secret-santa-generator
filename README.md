@@ -12,7 +12,7 @@ A Django application that will store secret santa group members and randomly ass
 <ul>
   <li>Make The Interface Easy To Use</li>
   <li>Overcome the issue of any member in the group getting assigned thier own name or getting left behind</li>
-  <li>Make the process of creating a group and assigning secret santas a quick process</li>
+  <li>Make the process of creating a group and assigning secret santas quick</li>
   <li>Send emails to Each member in the group quickly and prevent the email from getting into the spam folder</li>
 </ul>
 
